@@ -1,4 +1,4 @@
-# NewRelic::CloudFormation::Workloads
+# NewRelic::CloudFormation::Dashboards
 
 CRUD operations for New Relic Workloads via the NerdGraph API
 
@@ -10,13 +10,12 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 
 <pre>
 {
-    "Type" : "NewRelic::CloudFormation::Workloads",
+    "Type" : "NewRelic::CloudFormation::Dashboards",
     "Properties" : {
-        "<a href="#sourceguid" title="SourceGuid">SourceGuid</a>" : <i>String</i>,
-        "<a href="#duplicatename" title="DuplicateName">DuplicateName</a>" : <i>String</i>,
-        "<a href="#workload" title="Workload">Workload</a>" : <i>String</i>,
+        "<a href="#dashboardinput" title="DashboardInput">DashboardInput</a>" : <i>String</i>,
         "<a href="#listqueryfilter" title="ListQueryFilter">ListQueryFilter</a>" : <i>String</i>,
-        "<a href="#variables" title="Variables">Variables</a>" : <i><a href="variables.md">Variables</a></i>
+        "<a href="#variables" title="Variables">Variables</a>" : <i><a href="variables.md">Variables</a></i>,
+        "<a href="#tags" title="Tags">Tags</a>" : <i><a href="tags.md">Tags</a></i>
     }
 }
 </pre>
@@ -24,34 +23,17 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 ### YAML
 
 <pre>
-Type: NewRelic::CloudFormation::Workloads
+Type: NewRelic::CloudFormation::Dashboards
 Properties:
-    <a href="#sourceguid" title="SourceGuid">SourceGuid</a>: <i>String</i>
-    <a href="#duplicatename" title="DuplicateName">DuplicateName</a>: <i>String</i>
-    <a href="#workload" title="Workload">Workload</a>: <i>String</i>
+    <a href="#dashboardinput" title="DashboardInput">DashboardInput</a>: <i>String</i>
     <a href="#listqueryfilter" title="ListQueryFilter">ListQueryFilter</a>: <i>String</i>
     <a href="#variables" title="Variables">Variables</a>: <i><a href="variables.md">Variables</a></i>
+    <a href="#tags" title="Tags">Tags</a>: <i><a href="tags.md">Tags</a></i>
 </pre>
 
 ## Properties
 
-#### SourceGuid
-
-_Required_: No
-
-_Type_: String
-
-_Update requires_: [No interruption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt)
-
-#### DuplicateName
-
-_Required_: No
-
-_Type_: String
-
-_Update requires_: [No interruption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt)
-
-#### Workload
+#### DashboardInput
 
 _Required_: No
 
@@ -72,6 +54,14 @@ _Update requires_: [No interruption](https://docs.aws.amazon.com/AWSCloudFormati
 _Required_: No
 
 _Type_: <a href="variables.md">Variables</a>
+
+_Update requires_: [No interruption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt)
+
+#### Tags
+
+_Required_: No
+
+_Type_: <a href="tags.md">Tags</a>
 
 _Update requires_: [No interruption](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-updating-stacks-update-behaviors.html#update-no-interrupt)
 

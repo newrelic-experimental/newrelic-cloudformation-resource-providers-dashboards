@@ -13,11 +13,6 @@ import (
 )
 
 //
-// TODO API specific
-//
-var typeName = "NewRelic::CloudFormation:Dashboards"
-
-//
 // Generic below here, shouldn't require changes
 //
 func init() {
@@ -61,11 +56,11 @@ func wrap(f func(client *client.GraphqlClient, model model.Model) (event handler
    }()
 
    fmt.Println("")
-   logging.Dump(log.DebugLevel, os.Environ(), "os.Environ: ")
-   logging.Dump(log.DebugLevel, req.RequestContext, "req.RequestContext: ")
+   logging.Dump(log.TraceLevel, os.Environ(), "os.Environ: ")
+   logging.Dump(log.TraceLevel, req.RequestContext, "req.RequestContext: ")
 
    sm := NewPayload(currentModel)
-   c := client.NewGraphqlClient(req.Session, &typeName)
+   c := client.NewGraphqlClient(req.Session, &typeName, sm)
 
    fmt.Println("")
    return f(c, sm)

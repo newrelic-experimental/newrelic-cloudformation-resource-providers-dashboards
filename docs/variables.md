@@ -1,4 +1,4 @@
-# NewRelic::CloudFormation::Workloads Variables
+# NewRelic::CloudFormation::Dashboards Variables
 
 ## Syntax
 
