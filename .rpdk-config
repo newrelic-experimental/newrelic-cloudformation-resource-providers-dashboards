@@ -1,6 +1,6 @@
 {
     "artifact_type": "RESOURCE",
-    "typeName": "NewRelic::CloudFormation::Dashboards",
+    "typeName": "NewRelic::Observability::Dashboards",
     "language": "go",
     "runtime": "go1.x",
     "entrypoint": "handler",

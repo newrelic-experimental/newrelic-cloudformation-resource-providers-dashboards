@@ -39,7 +39,7 @@ func (p *Payload) AppendToResourceModels(m model.Model) {
 // These are API specific, must be configured per API
 //
 
-var typeName = "NewRelic::CloudFormation:Dashboards"
+var typeName = "NewRelic::Observability::Dashboards"
 
 func (p *Payload) NewModelFromGuid(g interface{}) (m model.Model) {
    s := fmt.Sprintf("%s", g)

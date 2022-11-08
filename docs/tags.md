@@ -1,4 +1,4 @@
-# NewRelic::Observability::Dashboards Variables
+# NewRelic::Observability::Dashboards Tags
 
 ## Syntax
 

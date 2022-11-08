@@ -1,10 +1,15 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: Sample New Relic Tagging Template
+Description: Sample New Relic Dashboards Template
 Resources:
-  Dashboard1:
-    Type: 'newrelic::cloudformation::tagging'
+  Resource1:
+    Type: 'NewRelic::Observability::Dashboards'
     Properties:
-      EntityGuid: "YOUR_ENTITY_GUID"
-      Tags:
-        - Key: "Template-Key1"
-          Values: [ "Template-Key1-Value1-Create", "Template-Key1-Value2-Create" ]
+      DashboardInput: >-
+        description: "CloudFormation test dashboard", name: "CloudFormation Test Dashboard", pages: 
+            {description: "TD PAGE", name: "TD Page", widgets: 
+              {title: "Widget Title", configuration: 
+                {markdown: {text: "Some markdown"}}}}, permissions: PRIVATE
+
+Outputs:
+  CustomResourceGuid:
+    Value: !GetAtt Resource1.Guid

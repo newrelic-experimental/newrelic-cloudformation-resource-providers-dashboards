@@ -1,6 +1,6 @@
-# NewRelic::CloudFormation::Dashboards
+# NewRelic::Observability::Dashboards
 
-CRUD operations for New Relic Workloads via the NerdGraph API
+CRUD operations for New Relic Dashboards via the NerdGraph API
 
 ## Syntax
 
@@ -10,7 +10,7 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 
 <pre>
 {
-    "Type" : "NewRelic::CloudFormation::Dashboards",
+    "Type" : "NewRelic::Observability::Dashboards",
     "Properties" : {
         "<a href="#dashboardinput" title="DashboardInput">DashboardInput</a>" : <i>String</i>,
         "<a href="#listqueryfilter" title="ListQueryFilter">ListQueryFilter</a>" : <i>String</i>,
@@ -23,7 +23,7 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 ### YAML
 
 <pre>
-Type: NewRelic::CloudFormation::Dashboards
+Type: NewRelic::Observability::Dashboards
 Properties:
     <a href="#dashboardinput" title="DashboardInput">DashboardInput</a>: <i>String</i>
     <a href="#listqueryfilter" title="ListQueryFilter">ListQueryFilter</a>: <i>String</i>
