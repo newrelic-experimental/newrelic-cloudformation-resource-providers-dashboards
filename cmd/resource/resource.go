@@ -36,6 +36,7 @@ func wrap(f func(client *client.GraphqlClient, model model.Model) (event handler
    defer func() {
       r := recover()
       if r == nil {
+         log.Debugf("wrap: exit: event: %+v err: %+v", event, err)
          return
       }
 
@@ -60,7 +61,7 @@ func wrap(f func(client *client.GraphqlClient, model model.Model) (event handler
    logging.Dump(log.TraceLevel, req.RequestContext, "req.RequestContext: ")
 
    sm := NewPayload(currentModel)
-   c := client.NewGraphqlClient(req.Session, &typeName, sm, NewErrorHandler(sm))
+   c := client.NewGraphqlClient(req, &typeName, sm, NewErrorHandler(sm))
 
    fmt.Println("")
    return f(c, sm)

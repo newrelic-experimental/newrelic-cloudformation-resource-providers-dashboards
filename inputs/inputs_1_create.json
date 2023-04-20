@@ -1,3 +1,4 @@
 {
-  "DashboardInput": "description: \"cfn test dashboard 1 description\", name: \"cfn test dashboard 1 name\", pages: {description: \"cfn test dashboard page 1 description\", name: \"cfn test dashboard page 1 name\", widgets: {configuration: {markdown: {text: \"Some markdown text\"}}}}, permissions: PRIVATE"
+  "DashboardInput": "description: \"cfn test dashboard 1 description\", name: \"cfn test dashboard 1 name\", pages: {description: \"cfn test dashboard page 1 description\", name: \"cfn test dashboard page 1 name\", widgets: {configuration: {markdown: {text: \"Some markdown text\"}}}}, permissions: PRIVATE",
+  "Tags": {"CreateTag1Key1": "CreateTag1Value1"}
 }

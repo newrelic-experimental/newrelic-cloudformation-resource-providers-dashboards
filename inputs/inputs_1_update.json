@@ -1,3 +1,5 @@
 {
-  "DashboardInput": "description: \"cfn test dashboard 1 description updated\", name: \"cfn test dashboard 1 name updated\", pages: {description: \"cfn test dashboard page 1 description updated\", name: \"cfn test dashboard page 1 name updated\", widgets: {configuration: {markdown: {text: \"Some markdown text updated\"}}}}, permissions: PRIVATE"
+  "DashboardInput": "description: \"cfn test dashboard 1 description updated\", name: \"cfn test dashboard 1 name updated\", pages: {description: \"cfn test dashboard page 1 description updated\", name: \"cfn test dashboard page 1 name updated\", widgets: {configuration: {markdown: {text: \"Some markdown text updated\"}}}}, permissions: PRIVATE",
+  "Tags": {"UpdateTag1Key1": "UpdateTag1Value1"}
+
 }

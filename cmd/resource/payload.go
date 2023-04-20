@@ -15,6 +15,10 @@ type Payload struct {
    models []interface{}
 }
 
+func (p *Payload) HasTags() bool {
+   return p.model.Tags != nil
+}
+
 func NewPayload(m *Model) *Payload {
    return &Payload{
       model:  m,
@@ -33,6 +37,10 @@ func (p *Payload) GetResourceModels() []interface{} {
 
 func (p *Payload) AppendToResourceModels(m model.Model) {
    p.models = append(p.models, m.GetResourceModel())
+}
+
+func (p *Payload) GetTags() map[string]string {
+   return p.model.Tags
 }
 
 //

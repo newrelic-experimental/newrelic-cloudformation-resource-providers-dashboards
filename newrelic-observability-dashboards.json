@@ -2,6 +2,9 @@
   "typeName": "NewRelic::Observability::Dashboards",
   "description": "CRUD operations for New Relic Dashboards via the NerdGraph API",
   "sourceUrl": "https://github.com/newrelic-experimental/newrelic-cloudformation-resource-providers-dashboards",
+  "tagging": {
+    "taggable": true
+  },
   "properties": {
     "DashboardInput": {
       "type": "string"
