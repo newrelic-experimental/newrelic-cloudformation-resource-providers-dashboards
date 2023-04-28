@@ -28,7 +28,7 @@ This document assumes familiarity with using CloudFormation Public extensions in
 ## Stack Configuration
 | Field           | Type   | Default | Create | Update | Delete | Read | List | Notes                                                                                                                                                                |
 |-----------------|--------|---------|:------:|:------:|:------:|:----:|:----:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| DashboardInput  | String | none    |   R    |   R    |        |      |      | Specific to this extension                                                                                                                                           |
+| Dashboard       | String | none    |   R    |   R    |        |      |      | Specific to this extension                                                                                                                                           |
 | Guid            | string | none    |        |   R    |   R    |  R   |      | [See Stack Configuration Common](https://github.com/newrelic-experimental/newrelic-cloudformation-resource-providers-common/blob/main/STACK_CONFIGURATION_COMMON.md) |
 | ListQueryFilter | string | none    |        |        |        |      |  R   | [See Stack Configuration Common](https://github.com/newrelic-experimental/newrelic-cloudformation-resource-providers-common/blob/main/STACK_CONFIGURATION_COMMON.md) |
 | Variables       | Object | none    |   O    |   O    |        |  O   |  O   | [See Stack Configuration Common](https://github.com/newrelic-experimental/newrelic-cloudformation-resource-providers-common/blob/main/STACK_CONFIGURATION_COMMON.md) |
@@ -40,17 +40,23 @@ Key:
 - Blank- unused
 
 
-### DashboardInput
+### Dashboard
 The entire `dashboard` fragment from a `dashboardCreate` or `dashboardUpdate` mutation.
 
-This string is a valid GraphQL fragment representing a Workload, including the `workload: ` keyword. Your best bet is to use the
+This string is a valid GraphQL fragment representing a Dashboard, including the `dashboard: ` keyword. Your best bet is to use the
 [GraphQL API Explorer](https://api.newrelic.com/graphiql?#query=mutation%20%7B%0A%20%20workloadCreate%28workload%3A%20%7B%7D%29%0A%7D%0A)
 to create this and then copy and paste. Your fragment will be substituted in a create or update mutation like this:
 ```graphql
 mutation {
-  workloadCreate(accountId: {{{ACCOUNTID}}}, {{{DASHBOARD}}}) {
-    guid
-  }
+    dashboardCreate(accountId: {{{ACCOUNTID}}}, {{{DASHBOARD}}} ) {
+        entityResult {
+            guid
+        }
+        errors {
+            description
+            type
+        }
+    }
 }
 ```
 _NOTE_: the `{{{` and `}}}` are for [Moustache](#Moustache) processing.
