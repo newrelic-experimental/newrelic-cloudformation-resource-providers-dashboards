@@ -6,7 +6,7 @@
     "taggable": true
   },
   "properties": {
-    "DashboardInput": {
+    "Dashboard": {
       "type": "string"
     },
     "Guid": {

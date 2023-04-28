@@ -12,7 +12,7 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 {
     "Type" : "NewRelic::Observability::Dashboards",
     "Properties" : {
-        "<a href="#dashboardinput" title="DashboardInput">DashboardInput</a>" : <i>String</i>,
+        "<a href="#dashboard" title="Dashboard">Dashboard</a>" : <i>String</i>,
         "<a href="#listqueryfilter" title="ListQueryFilter">ListQueryFilter</a>" : <i>String</i>,
         "<a href="#variables" title="Variables">Variables</a>" : <i><a href="variables.md">Variables</a></i>,
         "<a href="#tags" title="Tags">Tags</a>" : <i><a href="tags.md">Tags</a></i>
@@ -25,7 +25,7 @@ To declare this entity in your AWS CloudFormation template, use the following sy
 <pre>
 Type: NewRelic::Observability::Dashboards
 Properties:
-    <a href="#dashboardinput" title="DashboardInput">DashboardInput</a>: <i>String</i>
+    <a href="#dashboard" title="Dashboard">Dashboard</a>: <i>String</i>
     <a href="#listqueryfilter" title="ListQueryFilter">ListQueryFilter</a>: <i>String</i>
     <a href="#variables" title="Variables">Variables</a>: <i><a href="variables.md">Variables</a></i>
     <a href="#tags" title="Tags">Tags</a>: <i><a href="tags.md">Tags</a></i>
@@ -33,7 +33,7 @@ Properties:
 
 ## Properties
 
-#### DashboardInput
+#### Dashboard
 
 _Required_: No
 

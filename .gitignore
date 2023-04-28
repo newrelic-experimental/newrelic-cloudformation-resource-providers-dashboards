@@ -21,6 +21,8 @@ config/
 inputs-mock/
 scratch/
 tmp/
+*.log
+*.zip
 
 # Jetbrains
 .idea/

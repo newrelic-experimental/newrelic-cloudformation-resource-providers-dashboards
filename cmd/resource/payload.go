@@ -55,7 +55,7 @@ func (p *Payload) NewModelFromGuid(g interface{}) (m model.Model) {
 }
 
 func (p *Payload) GetGraphQLFragment() *string {
-   return p.model.DashboardInput
+   return p.model.Dashboard
 }
 
 func (p *Payload) SetGuid(g *string) {
@@ -70,7 +70,7 @@ func (p *Payload) GetGuid() *string {
 func (p *Payload) GetCreateMutation() string {
    return `
 mutation {
-  dashboardCreate(accountId: {{{ACCOUNTID}}}, dashboard: { {{{DASHBOARD}}} }) {
+  dashboardCreate(accountId: {{{ACCOUNTID}}}, {{{FRAGMENT}}} ) {
     entityResult {
       guid
     }
@@ -100,7 +100,7 @@ mutation {
 func (p *Payload) GetUpdateMutation() string {
    return `
 mutation {
-  dashboardUpdate(dashboard: { {{{DASHBOARD}}} }, guid: "{{{GUID}}}") {
+  dashboardUpdate( {{{FRAGMENT}}} , guid: "{{{GUID}}}") {
     entityResult {
       guid
     }
@@ -185,8 +185,8 @@ func (p *Payload) GetVariables() map[string]string {
       p.model.Variables["GUID"] = *p.model.Guid
    }
 
-   if p.model.DashboardInput != nil {
-      p.model.Variables["DASHBOARD"] = *p.model.DashboardInput
+   if p.model.Dashboard != nil {
+      p.model.Variables["FRAGMENT"] = *p.model.Dashboard
    }
 
    lqf := ""

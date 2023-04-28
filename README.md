@@ -1,7 +1,5 @@
 [sh![New Relic Experimental header](https://github.com/newrelic/opensource-website/raw/master/src/images/categories/Experimental.png)](https://opensource.newrelic.com/oss-category/#new-relic-experimental)
 
-[APIURL]: https://docs.newrelic.com/docs/apis/nerdgraph/examples/nerdgraph-workloads-api-tutorials/
-
 # NewRelic::Observability::Dashboards
 
 ![GitHub forks](https://img.shields.io/github/forks/newrelic-experimental/newrelic-experimental-FIT-template?style=social)
@@ -20,64 +18,37 @@
 ![GitHub pull requests closed](https://img.shields.io/github/issues-pr-closed/newrelic-experimental/newrelic-experimental-FIT-template)
 
 ## Description
-This Cloud Formation Custom Resource provides a CRUDL interface to the New Relic [NerdGraph (GraphQL) Dashboards API] [https://docs.newrelic.com/docs/apis/nerdgraph/examples/nerdgraph-dashboards] for Cloud Formation stacks.
+This Cloud Formation Custom Resource provides a CRUDL interface to the New Relic [NerdGraph GraphQL Dashboards API](https://docs.newrelic.com/docs/apis/nerdgraph/examples/nerdgraph-dashboards) for Cloud Formation stacks.
 
 ## Prerequisites
 This document assumes familiarity with using CloudFormation Public extensions in CloudFormation templates. If you are not familiar with this [start here](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-public.html)
 
-## [Configuration](https://github.com/newrelic-experimental/newrelic-cloudformation-resource-providers-common/blob/main/CONFIGURATION.md)
+## [Extension Configuration](https://github.com/newrelic-experimental/newrelic-cloudformation-resource-providers-common/blob/main/EXTENSION_CONFIGURATION.md)
 
-## Model
-| Field           | Type   | Default                          | Create | Duplicate | Update | Delete | Read | Notes                                                                                                                       |
-|-----------------|--------|----------------------------------|:------:|:---------:|:------:|:------:|:----:|-----------------------------------------------------------------------------------------------------------------------------|
-| Guid            | string | none                             |        |           |   R    |   R    |  R   |                                                                                                                             |
-| ListQueryFilter | string | none                             |        |           |        |        |      |                                                                                                                             |
-| Variables       | Object | none                             |        |           |        |        |      |                                                                                                                             |
-| SourceGuid      | string | none                             |        |     R     |        |        |      |                                                                                                                             |                                                                                                                             |
-| DuplicateName   | string | <SourceGuid>-DUPLICATE           |        |     O     |        |        |      |                                                                                                                             |                                                                                                                             |
-| Workload        | String | none                             |   R    |           |   R    |        |      |                                                                                                                             |
+## Stack Configuration
+| Field           | Type   | Default | Create | Update | Delete | Read | List | Notes                                                                                                                                                                |
+|-----------------|--------|---------|:------:|:------:|:------:|:----:|:----:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| DashboardInput  | String | none    |   R    |   R    |        |      |      | Specific to this extension                                                                                                                                           |
+| Guid            | string | none    |        |   R    |   R    |  R   |      | [See Stack Configuration Common](https://github.com/newrelic-experimental/newrelic-cloudformation-resource-providers-common/blob/main/STACK_CONFIGURATION_COMMON.md) |
+| ListQueryFilter | string | none    |        |        |        |      |  R   | [See Stack Configuration Common](https://github.com/newrelic-experimental/newrelic-cloudformation-resource-providers-common/blob/main/STACK_CONFIGURATION_COMMON.md) |
+| Variables       | Object | none    |   O    |   O    |        |  O   |  O   | [See Stack Configuration Common](https://github.com/newrelic-experimental/newrelic-cloudformation-resource-providers-common/blob/main/STACK_CONFIGURATION_COMMON.md) |
+| Tags            | Object | none    |   O    |   O    |        |      |      | [See Stack Configuration Common](https://github.com/newrelic-experimental/newrelic-cloudformation-resource-providers-common/blob/main/STACK_CONFIGURATION_COMMON.md) |                                                                                                                             |
 
 Key:
 - R- Requird
 - O- Optional
 - Blank- unused
 
-### Guid
-`Guid` New Relic entity identifier. Typically the `guid` vaule from Nerd Graph.
 
-### ListQueryFilter
-`actor` `entitySearch` query string. The query string can search for an exact or fuzzy match on name, as well as searching several other attributes.
-
-- Operators available: =, AND, IN, LIKE
-- Special characters (.,;:*-_) are treated as whitespace. For example, name LIKE ':aws:' will match -aws. or foo aws.
-- Tags can be referenced in multiple ways with or without backticks.
-
-Examples:
-- "name = 'MyApp (Staging)'
-- "name LIKE 'MyApp' AND type IN ('APPLICATION')"
-- "reporting = 'false' AND type IN ('HOST')"
-- "domain IN ('INFRA', 'APM')"
-- tags.Environment = 'staging' AND type IN ('APPLICATION')
-
-### Variables
-`Variables` is a JSON object of key/value pairs (string/string) that are substituted in the `Workload` string with [Moustache](#Moustache) allowing for parameterized input at the CloudFormation level.
-
-### SourceGuid
-*DUPLICATE ONLY*
-The guid of the Workload to be duplicated. The presence of this field in the stack is the indication that this is a `Duplicate` rather than `Create` operation.
-
-### DuplicateName
-The `name` to apply to the duplicated Workload.
-
-### Workload
-The entire `workload` fragment from a `workloadCreate` or `workloadDuplicate`
+### DashboardInput
+The entire `dashboard` fragment from a `dashboardCreate` or `dashboardUpdate` mutation.
 
 This string is a valid GraphQL fragment representing a Workload, including the `workload: ` keyword. Your best bet is to use the
 [GraphQL API Explorer](https://api.newrelic.com/graphiql?#query=mutation%20%7B%0A%20%20workloadCreate%28workload%3A%20%7B%7D%29%0A%7D%0A)
 to create this and then copy and paste. Your fragment will be substituted in a create or update mutation like this:
 ```graphql
 mutation {
-  workloadCreate(accountId: {{{ACCOUNTID}}}, {{{WORKLOAD}}}) {
+  workloadCreate(accountId: {{{ACCOUNTID}}}, {{{DASHBOARD}}}) {
     guid
   }
 }
@@ -86,22 +57,23 @@ _NOTE_: the `{{{` and `}}}` are for [Moustache](#Moustache) processing.
 
 If you use a JSON CloudFormation template you will have to stringify the GraphQL fragment. YAML CloudFormation templates should follow [YAML multi-line input rules](https://yaml-multiline.info/) and avoid stringification.
 
-
-## Moustache
-All text substitution is done using a [Go implementation](https://github.com/cbroglie/mustache) of the [Moustache specification](https://github.com/mustache/spec)`. [The manual is here](http://mustache.github.io/mustache.5.html), in
-general all you need to know is use triple curly braces.
-
 ## Example
-An example of a YAML configuration, this is valid and works:
+An example stack configuration, this is valid and works:
 ```yaml
 AWSTemplateFormatVersion: 2010-09-09
-Description: Sample New Relic Workloads Template
+Description: Sample New Relic Dashboards Template
 Resources:
   Resource1:
-    Type: 'NewRelic::Observability::Workloads'
+    Type: 'NewRelic::Observability::Dashboards'
     Properties:
-      Workload: >-
-        workload: {entityGuids: "MTA3NDA4M3xWSVp8REFTSEJPQVJEfGRhOjE3MTk0NTk", name: "CloudFormationTest-Create"}
+      Dashboard: >-
+        dashboard: {description: "CloudFormation test dashboard", name: "CloudFormation Test Dashboard", pages: 
+            {description: "TD PAGE", name: "TD Page", widgets: 
+              {title: "Widget Title", configuration: 
+                {markdown: {text: "Some markdown"}}}}, permissions: PRIVATE}
+      Tags:
+        CreateTag1Key1: "CreateTag1Value1"
+
 Outputs:
   CustomResourceGuid:
     Value: !GetAtt Resource1.Guid
@@ -117,7 +89,6 @@ Outputs:
 ## Helpful links
 - [CloudFormation CLI User Guide](https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html)
 - [New Relic GraphQL Explorer](https://api.newrelic.com/graphiql) 
-
 
 ## Support
 New Relic has open-sourced this project. This project is provided AS-IS WITHOUT WARRANTY OR DEDICATED SUPPORT. Issues and contributions should be reported to the project here on GitHub.
