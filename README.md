@@ -35,7 +35,7 @@ This document assumes familiarity with using CloudFormation Public extensions in
 | Tags            | Object | none    |   O    |   O    |        |      |      | [See Stack Common Configuration](https://github.com/newrelic-experimental/newrelic-cloudformation-resource-providers-common/blob/main/STACK_COMMON_CONFIGURATION.md) |                                                                                                                             |
 
 Key:
-- R- Requird
+- R- Required
 - O- Optional
 - Blank- unused
 

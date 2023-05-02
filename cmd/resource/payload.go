@@ -174,28 +174,29 @@ func (p *Payload) GetGuidKey() string {
 }
 
 func (p *Payload) GetVariables() map[string]string {
-   // ACCOUNTID comes from the configuration
-   // NEXTCURSOR is a _convention_
-
-   if p.model.Variables == nil {
-      p.model.Variables = make(map[string]string)
+   // FIXME Don't modify the original!
+   vars := make(map[string]string)
+   if p.model.Variables != nil {
+      for k, v := range p.model.Variables {
+         vars[k] = v
+      }
    }
 
    if p.model.Guid != nil {
-      p.model.Variables["GUID"] = *p.model.Guid
+      vars["GUID"] = *p.model.Guid
    }
 
    if p.model.Dashboard != nil {
-      p.model.Variables["FRAGMENT"] = *p.model.Dashboard
+      vars["FRAGMENT"] = *p.model.Dashboard
    }
 
    lqf := ""
    if p.model.ListQueryFilter != nil {
       lqf = *p.model.ListQueryFilter
    }
-   p.model.Variables["LISTQUERYFILTER"] = lqf
+   vars["LISTQUERYFILTER"] = lqf
 
-   return p.model.Variables
+   return vars
 }
 
 func (p *Payload) GetErrorKey() string {
