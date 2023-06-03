@@ -23,16 +23,16 @@ This Cloud Formation Custom Resource provides a CRUDL interface to the New Relic
 ## Prerequisites
 This document assumes familiarity with using CloudFormation Public extensions in CloudFormation templates. If you are not familiar with this [start here](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/registry-public.html)
 
-## [Extension Configuration](https://github.com/newrelic-experimental/newrelic-cloudformation-resource-providers-common/blob/main/EXTENSION_CONFIGURATION.md)
+## [Extension Configuration](https://github.com/newrelic/newrelic-cloudformation-resource-providers-common/blob/main/EXTENSION_CONFIGURATION.md)
 
 ## Stack Configuration
 | Field           | Type   | Default | Create | Update | Delete | Read | List | Notes                                                                                                                                                                |
 |-----------------|--------|---------|:------:|:------:|:------:|:----:|:----:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Dashboard       | String | none    |   R    |   R    |        |      |      | Specific to this extension                                                                                                                                           |
-| Guid            | string | none    |        |   R    |   R    |  R   |      | [See Stack Common Configuration](https://github.com/newrelic-experimental/newrelic-cloudformation-resource-providers-common/blob/main/STACK_COMMON_CONFIGURATION.md) |
-| ListQueryFilter | string | none    |        |        |        |      |  R   | [See Stack Common Configuration](https://github.com/newrelic-experimental/newrelic-cloudformation-resource-providers-common/blob/main/STACK_COMMON_CONFIGURATION.md) |
-| Variables       | Object | none    |   O    |   O    |        |  O   |  O   | [See Stack Common Configuration](https://github.com/newrelic-experimental/newrelic-cloudformation-resource-providers-common/blob/main/STACK_COMMON_CONFIGURATION.md) |
-| Tags            | Object | none    |   O    |   O    |        |      |      | [See Stack Common Configuration](https://github.com/newrelic-experimental/newrelic-cloudformation-resource-providers-common/blob/main/STACK_COMMON_CONFIGURATION.md) |                                                                                                                             |
+| Guid            | string | none    |        |   R    |   R    |  R   |      | [See Stack Common Configuration](https://github.com/newrelic/newrelic-cloudformation-resource-providers-common/blob/main/STACK_COMMON_CONFIGURATION.md) |
+| ListQueryFilter | string | none    |        |        |        |      |  R   | [See Stack Common Configuration](https://github.com/newrelic/newrelic-cloudformation-resource-providers-common/blob/main/STACK_COMMON_CONFIGURATION.md) |
+| Variables       | Object | none    |   O    |   O    |        |  O   |  O   | [See Stack Common Configuration](https://github.com/newrelic/newrelic-cloudformation-resource-providers-common/blob/main/STACK_COMMON_CONFIGURATION.md) |
+| Tags            | Object | none    |   O    |   O    |        |      |      | [See Stack Common Configuration](https://github.com/newrelic/newrelic-cloudformation-resource-providers-common/blob/main/STACK_COMMON_CONFIGURATION.md) |                                                                                                                             |
 
 Key:
 - R- Required
@@ -90,7 +90,7 @@ Outputs:
 - `Debug` log level for mustache substitution
 - Validate mutation using the [Explorer](https://api.newrelic.com/graphiql)
 
-## [Development](https://github.com/newrelic-experimental/newrelic-cloudformation-resource-providers-common/blob/main/DEVELOPMENT.md)
+## [Development](https://github.com/newrelic/newrelic-cloudformation-resource-providers-common/blob/main/DEVELOPMENT.md)
 
 ## Helpful links
 - [CloudFormation CLI User Guide](https://docs.aws.amazon.com/cloudformation-cli/latest/userguide/what-is-cloudformation-cli.html)

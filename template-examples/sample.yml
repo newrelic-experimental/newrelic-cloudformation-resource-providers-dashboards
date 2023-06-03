@@ -6,9 +6,9 @@ Resources:
     Properties:
       Dashboard: >-
         dashboard: {description: "CloudFormation test dashboard", name: "CloudFormation Test Dashboard", pages: 
-            {description: "TD PAGE", name: "TD Page", widgets: 
-              {title: "Widget Title", configuration: 
-                {markdown: {text: "Some markdown"}}}}, permissions: PRIVATE}
+          {description: "TD PAGE", name: "TD Page", widgets: 
+            {title: "Widget Title", configuration: 
+              {markdown: {text: "Some markdown"}}}}, permissions: PRIVATE}
       Tags:
         CreateTag1Key1: "CreateTag1Value1"
 
