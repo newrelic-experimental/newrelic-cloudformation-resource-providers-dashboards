@@ -1,0 +1,24 @@
+{
+  "name": "newrelic-cloudformation-resource-providers-dashboards-example-cdk",
+  "scripts": {
+    "deploy": "cdk deploy",
+    "destroy": "cdk destroy",
+    "diff": "cdk diff",
+    "synth": "cdk synth"
+  },
+  "devDependencies": {
+    "aws-cdk": "^2.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@cdk-cloudformation/newrelic-observability-dashboards": "^1.2.0-alpha.7",
+    "aws-cdk-lib": "^2.1.0",
+    "constructs": "^10.0.5"
+  },
+  "engines": {
+    "node": ">= 18.17.1"
+  },
+  "license": "APACHE-2.0",
+  "version": "1.0.0"
+}

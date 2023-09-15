@@ -27,3 +27,10 @@ tmp/
 
 # Jetbrains
 .idea/
+
+# npm
+node_modules/
+package-lock.json
+
+# cdk
+cdk.out/
